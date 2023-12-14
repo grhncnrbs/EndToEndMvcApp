@@ -4,6 +4,7 @@ import com.grhncnrbs.endtoendmvcapp.registration.RegistrationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User registerUser(RegistrationRequest registrationRequest) {
         var user = new User(registrationRequest.getFirstName(), registrationRequest.getLastName(),
-                registrationRequest.getEmail(), registrationRequest.getPassword(), Arrays.asList(new Role("USER")));
+                registrationRequest.getEmail(), passwordEncoder.encode(registrationRequest.getPassword()), Arrays.asList(new Role("USER")));
         return user;
     }
 
