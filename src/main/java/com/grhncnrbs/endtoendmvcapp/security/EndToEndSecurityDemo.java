@@ -32,7 +32,7 @@ public class EndToEndSecurityDemo {
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
-                .logoutSuccessUrl("/logout");
+                .logoutSuccessUrl("/logout"); //Hata verirse (new AntPathRequestMatcher("/logout") dene
         return http.build();
     }
 }

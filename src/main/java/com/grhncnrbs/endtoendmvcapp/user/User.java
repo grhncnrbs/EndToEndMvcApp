@@ -12,6 +12,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
